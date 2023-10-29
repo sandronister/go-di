@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/sandronister/go-di/product"
 )
 
 func main() {
@@ -14,8 +13,7 @@ func main() {
 		panic(db)
 	}
 
-	productRepository := product.NewProductRepository(db)
-	productUseCase := product.NewProductUseCase(productRepository)
+	productUseCase := NewProductUseCase(db)
 
 	product, err := productUseCase.GetProduct(4)
 	if err != nil {
